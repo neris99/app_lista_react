@@ -1,13 +1,23 @@
+
 import { Card } from '../../components/Card/Card'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { ModalCreatFolder } from '../../containers/ModalCreatFolder/ModalCreatFolder';
+import { Notificacion } from '../../components/Notificacion/Notificacion';
+import { ModalSalvePin } from '../../containers/ModalSavePin/ModalSavePin';
+
 
 export const HomePages = () => {
     return(
         <div>
-            <ModalCreatFolder open={true}/>
+            <ModalSalvePin open={false}/>
+            <ModalCreatFolder open={false}/>
+            <Notificacion 
+            message = 'Criado com sucesso'
+            onClose ={() =>{
+                console.log("Clicou em fechar")
+            }}/>
             <Container fluid>
         <Row>
             <Col sx={12} md={2}><Card title='Matemática' image='https://picsum.photos/200/300?53' total={0}/></Col>
