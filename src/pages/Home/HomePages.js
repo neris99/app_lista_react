@@ -6,9 +6,12 @@ import Col from 'react-bootstrap/Col';
 import { ModalCreatFolder } from '../../containers/ModalCreatFolder/ModalCreatFolder';
 import { Notificacion } from '../../components/Notificacion/Notificacion';
 import { ModalSalvePin } from '../../containers/ModalSavePin/ModalSavePin';
+import { useAppContext } from '../../store/AppContext';
+
 
 
 export const HomePages = () => {
+    const value = useAppContext()
     return(
         <div>
             <ModalSalvePin open={false}/>
@@ -18,6 +21,7 @@ export const HomePages = () => {
             onClose ={() =>{
                 console.log("Clicou em fechar")
             }}/>
+                <span>{value.name}</span>
             <Container fluid>
         <Row>
             <Col sx={12} md={2}><Card title='Matemática' image='https://picsum.photos/200/300?53' total={0}/></Col>

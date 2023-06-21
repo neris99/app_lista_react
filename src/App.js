@@ -6,19 +6,19 @@ import{
   Route,
 } from 'react-router-dom'
 import { MinhasPastasPage } from "./pages/MinhasPastas/MinhasPastasPage";
-import { savePinInFolder } from "./services/pinService";
+import { AppContext } from './store/AppContext'
 
 function App() {
-  //saveFolder('JavaScript')
-  savePinInFolder('bbe3-12f17', 'pin123')
   return (
     <BrowserRouter>
     <div className="App">
-      <HeaderPartial />
+    <AppContext>
+    <HeaderPartial />
       <Routes>
         <Route  path='/' element={<HomePages />}/>
         <Route  path='/minhas-pastas' element={<MinhasPastasPage />}/>
       </Routes>
+    </AppContext>
     </div>
     </BrowserRouter>
   )
