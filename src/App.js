@@ -6,8 +6,11 @@ import{
   Route,
 } from 'react-router-dom'
 import { MinhasPastasPage } from "./pages/MinhasPastas/MinhasPastasPage";
+import { savePinInFolder } from "./services/pinService";
 
 function App() {
+  //saveFolder('JavaScript')
+  savePinInFolder('bbe3-12f17', 'pin123')
   return (
     <BrowserRouter>
     <div className="App">
