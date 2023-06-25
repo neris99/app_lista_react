@@ -8,11 +8,20 @@ import{
 import { MinhasPastasPage } from "./pages/MinhasPastas/MinhasPastasPage";
 import { AppContext } from './store/AppContext'
 
+const inicialState = {
+  activePin: null,
+  mode: null,
+  folders: [],
+  type: null,
+}
+
+
+
 function App() {
   return (
     <BrowserRouter>
     <div className="App">
-    <AppContext>
+    <AppContext inicialState={inicialState}>
     <HeaderPartial />
       <Routes>
         <Route  path='/' element={<HomePages />}/>

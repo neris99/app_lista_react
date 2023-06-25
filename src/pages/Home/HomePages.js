@@ -1,4 +1,4 @@
-
+import { CardContainer } from '../../containers/Card/Card';
 import { Card } from '../../components/Card/Card'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -9,23 +9,21 @@ import { ModalSalvePin } from '../../containers/ModalSavePin/ModalSavePin';
 import { useAppContext } from '../../store/AppContext';
 
 
-
 export const HomePages = () => {
-    const value = useAppContext()
+    const {state, dispatch} = useAppContext();
     return(
         <div>
-            <ModalSalvePin open={false}/>
+            <ModalSalvePin open={state.mode === 'savePin'}/>
             <ModalCreatFolder open={false}/>
             <Notificacion 
             message = 'Criado com sucesso'
             onClose ={() =>{
                 console.log("Clicou em fechar")
             }}/>
-                <span>{value.name}</span>
             <Container fluid>
         <Row>
-            <Col sx={12} md={2}><Card title='Matemática' image='https://picsum.photos/200/300?53' total={0}/></Col>
-            <Col sx={12} md={2}><Card title='Trigonometria' image='https://picsum.photos/200/300?13' total={1}/></Col>
+            <Col sx={12} md={2}><CardContainer title='Matemática' image='https://picsum.photos/200/300?53' total={0}/></Col>
+            <Col sx={12} md={2}><CardContainer title='Trigonometria' image='https://picsum.photos/200/300?13' total={1}/></Col>
         </Row>
         </Container>
         </div>
