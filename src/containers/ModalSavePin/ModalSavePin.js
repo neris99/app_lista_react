@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useAppContext } from "../../store/AppContext";
 import { closeModalsAction } from "../../store/actions";
-import { fetchFoldersAction } from "../../store/actions";
+import { fetchFoldersAction, openModalCreatFolder } from "../../store/actions";
 
 
 export const ModalSalvePin = ({open}) => {
@@ -16,9 +16,19 @@ export const ModalSalvePin = ({open}) => {
         dispatch(closeModalsAction())
     }    
 
+
+    const handleClickCreatFolder = () => {
+        console.log("Clicou em criar pasta")
+        dispatch(openModalCreatFolder())
+    }
+
     useEffect(() => {
         fetchFoldersAction(dispatch)
     },[])
+
+    useEffect(() => {
+        console.log(state)
+    }, [state])
 
 
     return (
@@ -30,9 +40,7 @@ export const ModalSalvePin = ({open}) => {
             {
                 label: 'Criar pasta',
                 variant: 'secondary',
-                onClick: () => {
-                    console.log("Clicou em criar pasta")
-                }
+                onClick: handleClickCreatFolder
             }
         ]}>
                 <ListGroup variant="flush">
