@@ -9,11 +9,25 @@ import { Notificacion } from '../../components/Notificacion/Notificacion';
 import { ModalSalvePin } from '../../containers/ModalSavePin/ModalSavePin';
 import { useAppContext } from '../../store/AppContext';
 import { saveFolderSuccessType } from '../../store/types';
+import { fetchPinsAction } from '../../store/actions';
 
 
 export const HomePages = () => {
     const {state, dispatch} = useAppContext();
     const [showFeedback, setShowFeedback] = useState(false)
+
+    const pinsNormalized = state.pins.map(pin => {
+        return({
+            ...pin,
+            total: state.folders.filter(folder => {
+                return folder.pins.includes(pin.id)
+            }).length
+        })
+    })
+
+    useEffect(() => {
+        fetchPinsAction(dispatch)
+    },[])
 
     useEffect(() => {
         if (state.type === saveFolderSuccessType){
@@ -33,8 +47,11 @@ export const HomePages = () => {
             )}
             <Container fluid>
         <Row>
-            <Col sx={12} md={2}><CardContainer id='123' title='Matemática' image='https://picsum.photos/200/300?53' total={0}/></Col>
-            <Col sx={12} md={2}><CardContainer id='133' title='Trigonometria' image='https://picsum.photos/200/300?13' total={1}/></Col>
+            {pinsNormalized.map(pin => (
+                <Col key={pin.id} sx={12} md={2}>
+                    <CardContainer {...pin}/>
+                </Col>
+            ))} 
         </Row>
         </Container>
         </div>
